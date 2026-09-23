@@ -5,27 +5,23 @@ First public release for the Redmi Note 8 Pro.
 
 What changed on the device side:
 
-• SELinux is fully Enforcing from the very first instant of boot. The kernel command line no longer forces permissive mode, and the boot-time denial count is down from 88 to a handful of harmless ones.
+• SELinux is Enforcing from the very start of boot. The kernel command line no longer carries androidboot.selinux=permissive, and the boot-time denials that remained in enforcing mode are fixed; a handful of harmless ones are left.
 
-• The kernel moved to the 4.14.357 OpenELA LTS branch, so it carries the current upstream security fixes.
+• Kernel: Saikrishna1504's 4.14.357 OpenELA-based kernel with three fixes on top: the SELinux command-line fix above, a cpufreq_mtk bug that made CPU power hints get silently dropped, and a kernel panic into recovery on cold boot.
 
-• Per-app thermal profiles in XiaomiParts work for the first time. ThermalService is now declared, and the app runs in its own SELinux domain instead of borrowing the one shared by every system app.
+• Per-app thermal profiles in XiaomiParts work for the first time. ThermalService is now declared, and the thermal switch is granted to XiaomiParts only rather than to every system app.
 
-• CPU boost hints now actually reach the scheduler. A long-standing bug in the MediaTek cpufreq driver made the frequency validator reject every valid frequency, so power hints were silently dropped.
+• The LAUNCH power hint now lifts the little cluster's frequency cap as well, so its frequency floor actually takes effect.
 
-• The LAUNCH hint now also raises the little cluster it is meant to boost, so app cold-start is measurably snappier.
+• Removed the video-telephony HAL declaration that nothing on this device provides, turned ViWiFi off and fixed the vtservice path, which stops a steady flood of log errors.
 
-• Removed the video-telephony HAL that nothing on this device provides, and turned ViWiFi off. Together these eliminated a log flood of roughly 9,500 lines per boot.
+• MediaTek OMX video codecs are back and properly registered in the blob list.
 
-• MediaTek OMX codec libraries are properly registered in the blob list, so hardware video decoding no longer depends on leftovers.
-
-• Camera tuning properties the HAL probes are labelled correctly, so a camera session no longer trips SELinux denials.
+• Camera tuning properties the HAL reads are labelled correctly, so a camera session no longer trips SELinux denials.
 
 • The package no longer overwrites your recovery partition. Whatever recovery you installed stays where it is.
 
-• Indian units get the stock Indian bootloader (lk_in.img), taken byte-for-byte from the official signed MIUI package.
-
-• Firmware provenance verified against the official signed MIUI V12.5.8.0.RGGMIXM and V12.5.8.0.RGGINXM packages.
+• Stock V12.5.8.0 firmware is included and flashed for you: the global RGGMIXM set, or the full Indian RGGINXM set on Indian units (ro.boot.hwc=India). Every image is byte-identical to the official signed MIUI packages.
 
 Known issues:
 
