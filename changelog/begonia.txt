@@ -1,30 +1,16 @@
 Project Infinity-X 3.12 | Android 16 | begonia | UNOFFICIAL
-Build 23.09.2026 | Security patch 2026-09-01 | Kernel 4.14.357
+Build 24.09.2026 | Security patch 2026-09-01 | Kernel 4.14.357
 
-First public release for the Redmi Note 8 Pro.
+Fixes from a full test pass of the first release.
 
-What changed on the device side:
+• VoWiFi (Wi-Fi calling) works. Part of MediaTek's VoWiFi stack was missing from the vendor blobs, and Android 16 blocked a routing rule the IMS IPsec monitor needs. Both are fixed. In testing, a call moved from Wi-Fi to LTE without dropping. Turn it on under SIM settings > Wi-Fi calling.
 
-• SELinux is Enforcing from the very start of boot. The kernel command line no longer carries androidboot.selinux=permissive, and the boot-time denials that remained in enforcing mode are fixed; a handful of harmless ones are left.
+• Wi-Fi hotspot turns on at the first tap while the phone is connected to a 5 GHz network, and runs on 5 GHz. The Wi-Fi driver marked channels 36-48 as radar channels, so the hotspot refused to start on them.
 
-• Kernel: Saikrishna1504's 4.14.357 OpenELA-based kernel with three fixes on top: the SELinux command-line fix above, a cpufreq_mtk bug that made CPU power hints get silently dropped, and a kernel panic into recovery on cold boot.
-
-• Per-app thermal profiles in XiaomiParts work for the first time. ThermalService is now declared, and the thermal switch is granted to XiaomiParts only rather than to every system app.
-
-• The LAUNCH power hint now lifts the little cluster's frequency cap as well, so its frequency floor actually takes effect.
-
-• Removed the video-telephony HAL declaration that nothing on this device provides, turned ViWiFi off and fixed the vtservice path, which stops a steady flood of log errors.
-
-• MediaTek OMX video codecs are back and properly registered in the blob list.
-
-• Camera tuning properties the HAL reads are labelled correctly, so a camera session no longer trips SELinux denials.
-
-• The package no longer overwrites your recovery partition. Whatever recovery you installed stays where it is.
-
-• Stock V12.5.8.0 firmware is included and flashed for you: the global RGGMIXM set, or the full Indian RGGINXM set on Indian units (ro.boot.hwc=India). Every image is byte-identical to the official signed MIUI packages.
+• Off-mode charging works. With a charger connected, powering off shows the charging screen instead of starting Android again.
 
 Known issues:
 
-• VoWiFi and video calling (ViLTE / ViWiFi) are not available.
+• Video calling over the carrier network (ViLTE / ViWiFi) is not available. Video calls in apps such as WhatsApp work.
 
 • Please report anything else you find, with a logcat if you can.
