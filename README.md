@@ -5,7 +5,8 @@ Xiaomi Redmi Note 8 Pro (`begonia`, MediaTek MT6785).
 
 The updater on the device reads:
 
-    gapps/<device>.json       the current build: filename, download URL, size, md5
+    gapps/<device>.json       the current GApps build: filename, download URL, size, md5
+    vanilla/<device>.json     the current Vanilla build (no Google apps)
     changelog/<device>.txt    what changed in it
 
 Builds are hosted on SourceForge, not here.

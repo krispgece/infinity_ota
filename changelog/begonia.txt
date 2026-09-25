@@ -1,13 +1,27 @@
 Project Infinity-X 3.12 | Android 16 | begonia | UNOFFICIAL
-Build 24.09.2026 | Security patch 2026-09-01 | Kernel 4.14.357
+Build 25.09.2026 | Security patch 2026-09-01 | Kernel 4.14.357
 
-Fixes from a full test pass of the first release.
+This build switches to dynamic partitions and adds a Vanilla variant without Google apps.
 
-• VoWiFi (Wi-Fi calling) works. Part of MediaTek's VoWiFi stack was missing from the vendor blobs, and Android 16 blocked a routing rule the IMS IPsec monitor needs. Both are fixed. In testing, a call moved from Wi-Fi to LTE without dropping. Turn it on under SIM settings > Wi-Fi calling.
+Before you install:
 
-• Wi-Fi hotspot turns on at the first tap while the phone is connected to a 5 GHz network, and runs on 5 GHz. The Wi-Fi driver marked channels 36-48 as radar channels, so the hotspot refused to start on them.
+• You need a recovery that supports dynamic partitions: Unified TWRP 3.7.1_12 by WuXing90 (link in the XDA thread). PBRP 4.1 and other static recoveries can't install this build. The installer stops at the start and nothing is changed.
 
-• Off-mode charging works. With a charger connected, powering off shows the charging screen instead of starting Android again.
+• Coming from the 23 or 24 Sep build: flash that recovery in fastboot mode, boot to it and sideload this build. No Format Data is needed; apps and data are kept.
+
+• Right after that first install, restart TWRP (Reboot > Recovery) before wiping or backing up anything in it.
+
+• Switching between GApps and Vanilla needs Format Data.
+
+Changes:
+
+• Dynamic partitions: system, system_ext, product and vendor now live in super, built from the stock system and vendor partitions. The partition table doesn't change.
+
+• New Vanilla variant without Google apps, with its own update feed.
+
+• Data roaming is now off by default. On an update it is switched off too, unless you turned it on yourself.
+
+• A vendor init script's attempt to create two Android 11 era folders is no longer logged as an SELinux denial.
 
 Known issues:
 
