@@ -1,30 +1,52 @@
 Project Infinity-X 3.12 | Android 16 | begonia | UNOFFICIAL
-Build 25.09.2026 | Security patch 2026-09-01 | Kernel 4.14.357
+Build 30.09.2026 | Security patch 2026-09-01 | Kernel 4.14.357
 
-This build switches to dynamic partitions and adds a Vanilla variant without Google apps.
+This build adds video calls over the carrier network (ViLTE) and over Wi-Fi calling (ViWiFi), hardware video encoding through Codec2 and hardware VP9 decoding.
+
+This is my last Infinity-X 3.12 (Android 16) build. My next build will be Infinity-X 4.0 on Android 17. There is no date yet. I don't know yet whether you can update to it from 3.12.
 
 Before you install:
 
-• You need a recovery that supports dynamic partitions: Unified TWRP 3.7.1_12 by WuXing90 (link in the XDA thread). PBRP 4.1 and other static recoveries can't install this build. The installer stops at the start and nothing is changed.
+• Coming from the 25 Sep build: install it through the Updater, or sideload it in Unified TWRP. No Format Data is needed; apps and data are kept. The Updater path between two dynamic builds hasn't been tested yet. If it fails, sideload.
 
-• Coming from the 23 or 24 Sep build: flash that recovery in fastboot mode, boot to it and sideload this build. No Format Data is needed; apps and data are kept.
-
-• Right after that first install, restart TWRP (Reboot > Recovery) before wiping or backing up anything in it.
+• Coming from the 23 or 24 Sep build: the same steps as for installing the 25 Sep build. Flash Unified TWRP 3.7.1_12 by WuXing90 (link in the XDA thread) in fastboot mode, boot to it and sideload this build. No Format Data is needed. Right after that first install, restart TWRP (Reboot > Recovery) before wiping or backing up anything in it. PBRP 4.1 and other static recoveries can't install this build.
 
 • Switching between GApps and Vanilla needs Format Data.
 
+• The clean install order has changed: install the ROM first, reboot to recovery, then Format Data. The steps are in the XDA thread.
+
+• After a clean install, Wi-Fi calling may be off. If you use it, turn on Wi-Fi calling in your SIM settings.
+
+• The Vanilla build has no setup wizard. On the first boot the phone goes straight to the home screen. That is expected: only the GApps build has Google's setup wizard.
+
 Changes:
 
-• Dynamic partitions: system, system_ext, product and vendor now live in super, built from the stock system and vendor partitions. The partition table doesn't change.
+• Video calls over the carrier network (ViLTE) work. Tested on a test build with a counterpart on the same carrier.
 
-• New Vanilla variant without Google apps, with its own update feed.
+• Video calls over Wi-Fi calling (ViWiFi) work too. A small change in Android's IMS framework lets the phone ask for video over Wi-Fi calling, and a kernel fix keeps these calls on Wi-Fi. On test builds before the fix, the modem moved them from Wi-Fi to LTE after about 10 s and back after 20 s, over and over. On a test build from the same sources, with a counterpart on the same carrier, a 7.5-minute call (3.5 minutes voice, then 4 minutes video) stayed on Wi-Fi the whole time.
 
-• Data roaming is now off by default. On an update it is switched off too, unless you turned it on yourself.
+• H.264 and H.265 video encoding now uses MediaTek's 64-bit Codec2 hardware encoders, with the old OMX encoders as a fallback. Tested on test builds: H.264 camera recording at 4K 30 fps and 1080p 60 fps, 120 fps slow motion, H.265 recording and screen recording. Camera recording was checked again on this build.
 
-• A vendor init script's attempt to create two Android 11 era folders is no longer logged as an SELinux denial.
+• VP9 videos decode in hardware up to 1440p, so YouTube now goes up to 1440p60, HDR videos included. The decoder is capped at 1440p on purpose: 4K stuttered on this phone.
+
+• The incoming-call notification can no longer be swiped away while the phone is ringing. Call notifications now use Android's call style.
+
+• Camera: the wait for a focused frame is shorter, which should fix the rare preview freeze on the first photo. Opening a recorded video from the thumbnail with "Just once" now works.
+
+• The MediaTek PQ service uses about 3% of one CPU core on a static screen, down from about 13% (measured on a test build).
+
+• A PC's USB port is now shown as USB charging instead of AC.
+
+• Standby: on battery, the kernel no longer holds the "usb" wakeup source for about 1.6 s after every wakeup. Not measured yet.
+
+• The expected strongSwan (VoWiFi) SELinux denials are no longer logged.
 
 Known issues:
 
-• Video calling over the carrier network (ViLTE / ViWiFi) is not available. Video calls in apps such as WhatsApp work.
+• Some YouTube versions list 2160p, but the phone decodes VP9 in hardware only up to 1440p, and picking 2160p played 1280x720. Pick 1440p or lower. During long playback of high-resolution HDR video, YouTube can also crash because its own app memory fills up (seen with 2160p after a few minutes, and with 1440p60 HDR after about 70 minutes). Reopening YouTube works. Why the memory fills up isn't known yet.
+
+• In a carrier video call with auto-rotate off, your own preview stays portrait when you turn the phone. The other side sees the right orientation.
+
+• Camera HDR video recording isn't supported. The camera HAL and the encoders don't offer it.
 
 • Please report anything else you find, with a logcat if you can.

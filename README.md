@@ -14,4 +14,6 @@ Builds are hosted on SourceForge, not here.
 Sources: [device tree](https://github.com/krispgece/device_redmi_begonia/tree/begonia-16) ·
 [kernel](https://github.com/krispgece/kernel_xiaomi_mt6785/tree/begonia-16) ·
 [vendor](https://github.com/krispgece/vendor_redmi_begonia/tree/begonia-16) ·
-[firmware](https://github.com/krispgece/vendor_redmi_begonia-firmware/tree/begonia-16)
+[firmware](https://github.com/krispgece/vendor_redmi_begonia-firmware/tree/begonia-16) ·
+[Dialer](https://github.com/krispgece/packages_apps_Dialer/tree/begonia-16) ·
+[IMS framework](https://github.com/krispgece/frameworks_opt_net_ims/tree/begonia-16)
