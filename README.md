@@ -9,9 +9,17 @@ The updater on the device reads:
     vanilla/<device>.json     the current Vanilla build (no Google apps)
     changelog/<device>.txt    what changed in it
 
+Static builds (stock partition layout, no super) have their own feed, so a
+dynamic phone is never offered a static zip:
+
+    static/gapps/<device>.json     the current static GApps build
+    static/vanilla/<device>.json   the current static Vanilla build
+    static/changelog/<device>.txt  what changed in it
+
 Builds are hosted on SourceForge, not here.
 
 Sources: [device tree](https://github.com/krispgece/device_redmi_begonia/tree/begonia-16) ·
+[static device tree](https://github.com/krispgece/device_redmi_begonia/tree/begonia-16-static) ·
 [kernel](https://github.com/krispgece/kernel_xiaomi_mt6785/tree/begonia-16) ·
 [vendor](https://github.com/krispgece/vendor_redmi_begonia/tree/begonia-16) ·
 [firmware](https://github.com/krispgece/vendor_redmi_begonia-firmware/tree/begonia-16) ·
