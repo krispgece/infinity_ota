@@ -7,9 +7,9 @@ This is my last Infinity-X 3.12 (Android 16) release. It also comes as a static 
 
 Before you install:
 
-• Coming from the 25 Sep build: install it through the Updater, or sideload it in Unified TWRP. No Format Data is needed; apps and data are kept. Updating from the 25 Sep build to this one through the Updater was tested and worked. If it fails for you, sideload.
+• Coming from the 25 Sep build: install it through the Updater, or sideload it in my recovery (PBRP-4.0-krispgece, link in the XDA thread). No Format Data is needed; apps and data are kept. Updating from the 25 Sep build to this one through the Updater was tested and worked. If it fails for you, sideload.
 
-• Coming from the 23 or 24 Sep build: the same steps as for installing the 25 Sep build. Flash Unified TWRP 3.7.1_12 by WuXing90 (link in the XDA thread) in fastboot mode, boot to it and sideload this build. No Format Data is needed. Right after that first install, restart TWRP (Reboot > Recovery) before wiping or backing up anything in it. PBRP 4.1 and other static recoveries can't install this build.
+• Coming from the 23 or 24 Sep build: flash my recovery (PBRP-4.0-krispgece, link in the XDA thread) in fastboot mode, boot to it and sideload this build. No Format Data is needed. The recovery then asks for Reboot > Recovery because the partition layout changed; Reboot > System is fine here too. The PBRP 4.1 build from Saikrishna1504's thread and other static recoveries can't install this build.
 
 • Switching between GApps and Vanilla needs Format Data.
 

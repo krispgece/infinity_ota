@@ -3,19 +3,19 @@ Build 01.10.2026 | Security patch 2026-09-01 | Kernel 4.14.357
 
 This is the static version of the 30.09.2026 build: the same changes, on the stock partition layout.
 
-This static build wasn't tested on a phone. It is built from the same sources as the 30.09 build, which was tested.
+It is built from the same sources as the 30.09 build. While testing my recovery I installed and booted both static builds, and reinstalled the static GApps build through the Updater's "Local update", which kept the data. Nothing beyond that is tested on the static builds yet.
 
 This is my last Infinity-X 3.12 (Android 16) release. It comes in two versions: dynamic, and this static one. My next build will be Infinity-X 4.0 on Android 17. There is no date yet. I don't know yet whether you can update to it from 3.12.
 
 Before you install:
 
-• You need a static recovery such as PBRP 4.1. PBRP 4.1 can freeze or reboot after flashing. The build is installed by then; hold power until the phone restarts.
+• Use my recovery (PBRP-4.0-krispgece, link in the XDA thread): it installs both the static and the dynamic builds.
 
-• Coming from the static 24 Sep build: sideload this build in your static recovery. Format Data shouldn't be needed for GApps. The 24 Sep build was GApps only, so moving to Vanilla needs Format Data.
+• Coming from the static 24 Sep build: sideload this build in my recovery. Format Data shouldn't be needed for GApps. The 24 Sep build was GApps only, so moving to Vanilla needs Format Data.
 
 • This first update has to be a sideload: the 24 Sep build's Updater shows only the dynamic builds, and a static recovery can't install those. After that, static builds come through the Updater.
 
-• Coming from a dynamic build (25 or 30 Sep), MIUI or another ROM: flash a static recovery in fastboot mode, run Format Data, then sideload this build.
+• Coming from a dynamic build (25 or 30 Sep), MIUI or another ROM: do the clean install from the XDA thread with this zip in my recovery: Advanced Wipe, sideload this build, Reboot > Recovery, Format Data, Reboot > System.
 
 • Switching between GApps and Vanilla needs Format Data.
 
